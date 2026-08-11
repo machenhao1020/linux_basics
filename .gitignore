@@ -4,5 +4,3 @@
 
 #所有的.txt文件
 *.txt
-#所有目录下的.txt
-docu/.txt
