@@ -439,3 +439,29 @@
 
     sar命令 查看网络的相关统计
     看class10.png
+
+## 环境变量
+
+- 获取环境变量
+     1.env | grep PATH
+     输出：PATH=$PATH:/usr/local/bin
+     2.echo $PATH $用来取值
+     输出：/usr/local/bin
+     3.echo ${PATH}ABC
+     输出：/usr/local/binABC
+- 设置环境变量
+     export PATH=$PATH:/usr/local/bin
+- 永久生效
+     1.针对当前用户生效，配置在当前用户的：~/.bashrc 文件中
+     2.针对所有用户生效，配置在系统的：/etc/profile 文件中
+     3.并通过语法：source 配置文件，进行立刻生效，或重新登录 FinalShell 生效
+
+     示例：vim ~/.bashrc
+          export PATH=$PATH:/usr/local/bin
+          source ~/.bashrc
+
+## rz  sz命令
+
+- rz 命令，接收文件
+- sz 命令，发送文件
+还是推荐拖拽
