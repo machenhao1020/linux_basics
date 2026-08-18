@@ -1,7 +1,9 @@
 
-
 .venv
 
 #所有的.txt文件
 *.txt
+
+__pycache__
+.git
 .vscode

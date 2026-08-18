@@ -465,3 +465,49 @@
 - rz 命令，接收文件
 - sz 命令，发送文件
 还是推荐拖拽
+
+## docker
+
+- docker pull docker.io/library/centos:7    拉取镜像(官方/作者名/镜像名:标签、版本号)
+- docker images 列出所有下载过的镜像
+- docker rmi + 镜像ID 删除镜像
+- docker ps 列出所有正在运行的容器 docker ps -a 列出所有容器
+Image（镜像）
+    ↓
+    类似“安装包/模板”
+    ↓
+    nginx:latest
+
+Container（容器）
+    ↓
+    镜像运行后的实例
+    ↓
+    nginx-container
+
+- 容器只要引用着镜像，镜像就无法删除，无论容器是否运行 应该先用docker rm + 容器ID 删除容器，再删除镜像
+- docker run [-d]+ 镜像ID 启动容器 -d 后台运行,不打印日志
+- docker run -p 8080:80 + 镜像ID 启动容器 -p 宿主机端口:容器端口 从容器的80端口映射到宿主机的8080端口
+- docker run -v /data/nginx/html:/usr/share/nginx/html + 镜像ID
+     1. 启动容器 -v 宿主机目录:容器目录 映射宿主机目录到容器目录
+     2. -p 绑定端口
+     3. -v 绑定目录(对宿主机与容器内目录修改会互相影响，又称为挂载卷) 作用：数据的持久化保存，容器被删除时，宿主机仍然有数据
+- docker volume create 创建挂载卷 可以代替/data/nginx/html
+- docker volume inspect + 挂载卷ID 查看挂载卷信息
+- docker run -it + 镜像ID 控制台进入容器进行交互
+- docker run --rm + 镜像ID 启动容器并删除容器
+- docker run rm -f + 容器ID 删除容器
+- docker run -d --restart always + 镜像ID 启动容器并设置自动重启
+         1.如果把always改成unless-stopped，手动停止的容器不会再自动重启
+- docker start + 容器ID 启动容器
+- docker stop + 容器ID 停止容器
+     1.docker run = 创建一个新容器 + 启动它
+     2.docker start = 启动一个已经存在、但目前停止的容器
+- docker create + 镜像ID 创建容器,但不启动
+- docker logs+ 容器ID 获取容器的日志 -f 持续获取日志
+- docker exec + 容器ID + 命令 运行命令,进入容器内交互
+
+## 构建镜像
+
+- docker build -t + driedanchovies/镜像名:标签 . 构建镜像 ,.表示当前目录下构建镜像
+- docker push + driedanchovies/镜像名:标签 推送镜像
+- docker run + 镜像ID 启动容器
